@@ -1,11 +1,13 @@
 package indi.huhy.template.config;
 
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.*;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.AuthenticationInfo;
+import org.apache.shiro.authc.AuthenticationToken;
+import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
-import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.stereotype.Component;
 
@@ -14,27 +16,27 @@ public class ShiroRealm extends AuthorizingRealm {
 
     @Override
     public boolean supports(AuthenticationToken token) {
-        return super.supports(token);
+        return token instanceof JWTToken;
     }
 
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
-        String username = (String) principalCollection.getPrimaryPrincipal();
-        Session session = SecurityUtils.getSubject().getSession();
+        String token = (String) principalCollection.getPrimaryPrincipal();
         SimpleAuthorizationInfo simpleAuthorizationInfo = new SimpleAuthorizationInfo();
-        // TODO 添加角色
-        simpleAuthorizationInfo.addRole("admin");
+        simpleAuthorizationInfo.addRole(JWTUtil.getRole(token));
         return simpleAuthorizationInfo;
     }
 
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
-        UsernamePasswordToken token = (UsernamePasswordToken) authenticationToken;
-        String username = token.getUsername();
-        // TODO 登录校验
-        SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(username, "password", getName());
-        Session session = SecurityUtils.getSubject().getSession();
-        session.setAttribute(username, "");
-        return authenticationInfo;
+        String token = (String) authenticationToken.getCredentials();
+        if (!JWTUtil.verify(token)) {
+            throw new AuthenticationException("Token invalid");
+        }
+        String identification = JWTUtil.getIdentification(token);
+        if (StringUtils.isBlank(identification)) {
+            throw new AuthenticationException("SysUserId didn't existed!");
+        }
+        return new SimpleAuthenticationInfo(token, token, getName());
     }
 }
