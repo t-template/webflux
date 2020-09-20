@@ -13,7 +13,7 @@
     <artifactId>ssmshiro</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>ssmshiro</name>
-    <description>Template project for SSM + Shiro</description>
+    <description>Template project for SSM + Shiro + JWT</description>
 
     <properties>
         <start-class>indi.huhy.template.SpringbootApplication</start-class>
