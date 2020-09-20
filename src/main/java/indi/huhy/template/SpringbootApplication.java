@@ -1,13 +1,13 @@
-package indi.huhy.demo.template;
+package indi.huhy.template;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpringbootDemoApplication {
+public class SpringbootApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SpringbootDemoApplication.class, args);
+        SpringApplication.run(SpringbootApplication.class, args);
     }
 
 }
