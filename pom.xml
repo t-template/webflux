@@ -10,9 +10,9 @@
     </parent>
 
     <groupId>indi.huhy.template</groupId>
-    <artifactId>springboot</artifactId>
+    <artifactId>ssm</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>springboot</name>
+    <name>ssm</name>
     <description>Template project for SSM</description>
 
     <properties>
@@ -101,7 +101,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-log4j</artifactId>
-            <version>${springboot.starter.log4j.version}</version>
+            <version>${spring-boot.starter.log4j.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
