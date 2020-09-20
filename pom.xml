@@ -10,9 +10,9 @@
     </parent>
 
     <groupId>indi.huhy.template</groupId>
-    <artifactId>ssmshiro</artifactId>
+    <artifactId>ssmshirojwt</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>ssmshiro</name>
+    <name>ssmshirojwt</name>
     <description>Template project for SSM + Shiro + JWT</description>
 
     <properties>
