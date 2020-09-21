@@ -8,13 +8,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @author huhy
- * @since 2019-09-08
+ * @version 1.0
+ * @date 2020/5/11 13:14
  */
+
 @RestController
 public class LoginController {
 
     @PostMapping(value = "/doLogin")
-    public void doLogin(@RequestBody LoginToken loginToken) {
-        String token = JWTUtil.sign(loginToken.getUsername());
+    public void login(@RequestBody LoginToken loginToken) throws Exception {
+        JWTUtil.sign(loginToken.getUsername());
     }
 }

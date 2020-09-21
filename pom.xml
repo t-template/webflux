@@ -10,17 +10,16 @@
     </parent>
 
     <groupId>indi.huhy.template</groupId>
-    <artifactId>ssmshirojwt</artifactId>
+    <artifactId>webflux</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>ssmshirojwt</name>
-    <description>Template project for SSM + Shiro + JWT</description>
+    <name>webflux</name>
+    <description>Template project for WebFlux</description>
 
     <properties>
         <start-class>indi.huhy.template.SpringbootApplication</start-class>
         <spring-boot.starter.log4j.version>1.3.8.RELEASE</spring-boot.starter.log4j.version>
         <lombok.version>1.18.12</lombok.version>
         <lombok.maven.plugin.version>1.18.6.0</lombok.maven.plugin.version>
-        <shiro.version>1.3.2</shiro.version>
         <java.jwt.version>3.10.3</java.jwt.version>
         <mysql.connector.java.version>8.0.15</mysql.connector.java.version>
         <druid.spring.boot.starter.version>1.1.10</druid.spring.boot.starter.version>
@@ -92,13 +91,17 @@
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <artifactId>spring-boot-starter-webflux</artifactId>
             <exclusions>
                 <exclusion>
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-starter-logging</artifactId>
                 </exclusion>
             </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-log4j -->
         <dependency>
@@ -137,19 +140,6 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>${commons.lang3.version}</version>
-        </dependency>
-
-        <!-- MVC -->
-        <!-- https://mvnrepository.com/artifact/org.apache.shiro/shiro-core -->
-        <dependency>
-            <groupId>org.apache.shiro</groupId>
-            <artifactId>shiro-core</artifactId>
-            <version>${shiro.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.shiro</groupId>
-            <artifactId>shiro-spring</artifactId>
-            <version>${shiro.version}</version>
         </dependency>
 
         <!-- ORM -->
